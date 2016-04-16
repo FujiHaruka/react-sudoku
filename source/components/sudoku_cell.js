@@ -7,58 +7,46 @@ const SudokuCell = React.createClass({
   getInitialState() {
     let {sectionId, cellId} = this.props
     return {
-      content: sudokuStore.getCellContent(sectionId, cellId)
+      content: sudokuStore.getCellValue(sectionId, cellId)
     }
   },
 
   render() {
-    let {sectionId, cellId} = this.props
-    let cellName = "sudoku-cell-" + cellId
-    let colCenter = cellId % 3 === 1
-    let rowCenter = Math.floor(cellId / 3) === 1
+    let {sectionId, cellId, variable} = this.props
     let {content} = this.state
+    let isColCenter = cellId % 3 === 1
+    let isRowCenter = Math.floor(cellId / 3) === 1
+
     return (
       <div className="sudoku-cell"
-           id={cellName}
-           data-col-center={colCenter}
-           data-row-center={rowCenter}
-           onClick={this.onClickEvent}
+           id={`sudoku-cell-${cellId}`}
+           data-col-center={isColCenter}
+           data-row-center={isRowCenter}
+           data-fixed={!variable}
+           onClick={this.onClick}
            >
         {content === 0 ? null : content}
       </div>
     )
   },
 
-  onClickEvent() {
-    // TODO 固定データを可変データの分離
-    console.log("click!")
-    let {sectionId, cellId} = this.props
+  onClick() {
+    let {variable, sectionId, cellId} = this.props
+    let {content} = this.state
+    if (!variable) return
     let selected = sudokuSelectStore.getState()
-    if (selected === 0) {
-      sudokuStore.dispatch({
-        type: 'DELETE',
-        payload: {
-          col: SUDOKU_UTIL.idToCol(sectionId, cellId),
-          row: SUDOKU_UTIL.idToRow(sectionId, cellId)
-        }
-      })
-      this.setState({
-        content: sudokuStore.getCellContent(sectionId, cellId)
-      })
-    } else {
-      let selected = sudokuSelectStore.getState()
-      sudokuStore.dispatch({
-        type: 'PUT',
-        payload: {
-          col: SUDOKU_UTIL.idToCol(sectionId, cellId),
-          row: SUDOKU_UTIL.idToRow(sectionId, cellId),
-          value: selected
-        }
-      })
-      this.setState({
-        content: sudokuStore.getCellContent(sectionId, cellId)
-      })
-    }
+    let type = (selected === 0 || selected === content) ? 'DELETE' : 'PUT'
+    sudokuStore.dispatch({
+      type: type,
+      payload: {
+        col: SUDOKU_UTIL.idToCol(sectionId, cellId),
+        row: SUDOKU_UTIL.idToRow(sectionId, cellId),
+        value: selected
+      }
+    })
+    this.setState({
+      content: sudokuStore.getCellValue(sectionId, cellId)
+    })
   }
 })
 

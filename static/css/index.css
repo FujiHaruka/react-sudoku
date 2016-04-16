@@ -37,6 +37,11 @@
   border-bottom: 1px solid #666;
 }
 
+.sudoku-cell[data-fixed="true"] {
+  color: #888;
+  font-weight: bold;
+}
+
 .sudoku-footer {
   width: 456px;
   display: flex;
@@ -44,6 +49,8 @@
 }
 
 .sudoku-footer-button {
+  cursor: pointer;
+  box-sizing: border-box;
   text-align: center;
   width: 42px;
   height: 42px;
@@ -51,6 +58,11 @@
   margin: 3px;
   font-size: 20px;
   color: white;
+  background-color: #999;
+  border-right: 2px solid #444;
+  border-bottom: 2px solid #444;
+}
+
+.sudoku-footer-button[data-selected="true"] {
   background-color: #666;
-  border: 1px solid #444;
 }

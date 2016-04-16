@@ -9,8 +9,7 @@ import sudokuStore from './stores/sudoku_store'
 const rootEl = document.getElementById('sudoku')
 
 function render() {
-  var problem = '962345678012340078012345678012000678012345078012340078012345678012345678012345008'
-  // var sudokuStore = createStore(sudokuReducer)
+  var problem = '043080250600000000000001094900004070000608000010200003820500000000000005034090710'
   sudokuStore.dispatch({
     type: 'INIT',
     payload: problem

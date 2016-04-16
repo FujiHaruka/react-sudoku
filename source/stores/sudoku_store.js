@@ -5,11 +5,17 @@ import SUDOKU_UTIL from '../util/sudoku_util'
 let store = createStore(sudokuReducer)
 
 const sudokuStore = Object.assign(store, {
-  getCellContent: function (sectionId, cellId) {
+  getCellValue (sectionId, cellId) {
     let state = store.getState()
     let row = SUDOKU_UTIL.idToRow(sectionId, cellId)
     let col = SUDOKU_UTIL.idToCol(sectionId, cellId)
-    return state[row][col]
+    return state[row][col].value
+  },
+  isCellVariable (sectionId, cellId) {
+    let state = store.getState()
+    let row = SUDOKU_UTIL.idToRow(sectionId, cellId)
+    let col = SUDOKU_UTIL.idToCol(sectionId, cellId)
+    return state[row][col].variable
   }
 })
 

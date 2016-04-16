@@ -1,5 +1,6 @@
 import React from 'react'
 import SudokuCell from './sudoku_cell'
+import sudokuStore from '../stores/sudoku_store'
 
 const SudokuSection = React.createClass({
   render() {
@@ -12,9 +13,13 @@ const SudokuSection = React.createClass({
     )
   },
 
-  _renderSudokuCell(id) {
+  _renderSudokuCell(cellId) {
+    let {sectionId} = this.props
     return (
-      <SudokuCell sectionId={this.props.sectionId} cellId={id} key={id} />
+      <SudokuCell sectionId={sectionId}
+                  cellId={cellId}
+                  key={cellId}
+                  variable={sudokuStore.isCellVariable(sectionId, cellId)} />
     )
   }
 })
