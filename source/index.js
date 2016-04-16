@@ -1,9 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
-// import Counter from './components/Counter'
 import SudokuBoard from './components/sudoku_board'
-import sudokuReducer from './reducers/sudoku_reducer'
+import SudokuFooter from './components/sudoku_footer'
 import sudokuStore from './stores/sudoku_store'
 
 // const store = createStore(counter)
@@ -17,7 +16,10 @@ function render() {
     payload: problem
   })
   ReactDOM.render(
-    <SudokuBoard />,
+    <div>
+      <SudokuBoard />
+      <SudokuFooter />
+    </div>,
     rootEl
   )
 }

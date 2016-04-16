@@ -20,10 +20,10 @@ export default function sudokuReducer(state = [], action) {
         return prev
       }, [])
     case 'PUT':
-      state[action.payload.col][action.payload.row] = action.payload.value
+      state[action.payload.row][action.payload.col] = action.payload.value
       return state
     case 'DELETE':
-      state[action.payload.col][action.payload.row] = 0
+      state[action.payload.row][action.payload.col] = 0
       return state
     default:
       return state

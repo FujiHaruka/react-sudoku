@@ -36,3 +36,21 @@
   border-top: 1px solid #666;
   border-bottom: 1px solid #666;
 }
+
+.sudoku-footer {
+  width: 456px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sudoku-footer-button {
+  text-align: center;
+  width: 42px;
+  height: 42px;
+  line-height: 40px;
+  margin: 3px;
+  font-size: 20px;
+  color: white;
+  background-color: #666;
+  border: 1px solid #444;
+}
