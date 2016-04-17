@@ -4,16 +4,9 @@ import sudokuSelectStore from '../stores/sudoku_select_store'
 import SUDOKU_UTIL from '../util/sudoku_util'
 
 const SudokuCell = React.createClass({
-  getInitialState() {
-    let {sectionId, cellId} = this.props
-    return {
-      content: sudokuStore.getCellValue(sectionId, cellId)
-    }
-  },
-
   render() {
     let {sectionId, cellId, variable} = this.props
-    let {content} = this.state
+    let {content, style} = this.state
     let isColCenter = cellId % 3 === 1
     let isRowCenter = Math.floor(cellId / 3) === 1
 
@@ -24,10 +17,29 @@ const SudokuCell = React.createClass({
            data-row-center={isRowCenter}
            data-fixed={!variable}
            onClick={this.onClick}
+           style={style}
            >
         {content === 0 ? null : content}
       </div>
     )
+  },
+
+  componentWillMount() {
+    let {sectionId, cellId} = this.props
+    let content = sudokuStore.getCellValue(sectionId, cellId)
+    let unsubscribed = sudokuSelectStore.subscribe(this.onSelecetedChange)
+    let highlighted = sudokuSelectStore.getState() === content
+    let initialState = {
+      unsubscribed,
+      highlighted,
+      content,
+      style: this._getStyle(highlighted)
+    }
+    this.setState(initialState)
+  },
+
+  componentWillUnmount() {
+    this.state.unsubscribed()
   },
 
   onClick() {
@@ -44,12 +56,33 @@ const SudokuCell = React.createClass({
         value: selected
       }
     })
-    this.setState({
+
+    let nextState = {
       content: sudokuStore.getCellValue(sectionId, cellId)
-    })
+    }
+    if (nextState.content === selected) {
+      nextState = Object.assign(nextState, {
+        highlighted: true,
+        style: this._getStyle(true)
+      })
+    }
+    console.log(nextState)
+    this.setState(nextState)
+
     if (type === 'PUT') {
       this._isFinished()
     }
+  },
+
+  onSelecetedChange() {
+    let highlighted = sudokuSelectStore.getState() === this.state.content
+    if (highlighted != this.state.highlighted) {
+      this.setState({highlighted, style: this._getStyle(highlighted)})
+    }
+  },
+
+  _getStyle(highlighted) {
+    return highlighted ? {color: 'red'} : {}
   },
 
   _isFinished() {

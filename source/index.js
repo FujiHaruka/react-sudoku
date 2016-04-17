@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
-import SudokuBoard from './components/sudoku_board'
-import SudokuFooter from './components/sudoku_footer'
+import SudokuMain from './components/sudoku_main'
 import sudokuStore from './stores/sudoku_store'
 import sudokuAnswerStore from './stores/sudoku_answer_store'
 // temp
@@ -23,10 +22,7 @@ function render() {
     payload: sha1(answer)
   })
   ReactDOM.render(
-    <div>
-      <SudokuBoard />
-      <SudokuFooter />
-    </div>,
+    <SudokuMain />,
     rootEl
   )
 }
