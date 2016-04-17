@@ -1,7 +1,11 @@
 import React from 'react'
 import sudokuStore from '../stores/sudoku_store'
+import annotationStore from '../stores/sudoku_annotation_store'
+import inputModeStore from '../stores/sudoku_input_mode_store'
+import annotationSelectStore from '../stores/annotation_select_store'
 import writingSelectStore from '../stores/writing_select_store'
 import SUDOKU_UTIL from '../util/sudoku_util'
+import {INPUT_MODE, COLOR} from '../util/consts'
 
 const SudokuCell = React.createClass({
   render() {
@@ -34,6 +38,7 @@ const SudokuCell = React.createClass({
       unsubscribed,
       highlighted,
       content,
+      annotations: new Set(),
       style: this._getStyle(highlighted)
     }
     this.setState(initialState)
@@ -44,6 +49,20 @@ const SudokuCell = React.createClass({
   },
 
   onClick() {
+    let mode = inputModeStore.getMode()
+    switch (mode) {
+      case INPUT_MODE.ANSWER:
+        this._writeAsAnswer()
+        return
+      case INPUT_MODE.ANNOTATION:
+        this._writeAsAnnotation()
+        return
+      default:
+        return
+    }
+  },
+
+  _writeAsAnswer() {
     let {variable, sectionId, cellId} = this.props
     let {content} = this.state
     if (!variable) return
@@ -61,18 +80,33 @@ const SudokuCell = React.createClass({
     let nextState = {
       content: sudokuStore.getCellValue(sectionId, cellId)
     }
-    if (nextState.content === selected) {
-      nextState = Object.assign(nextState, {
+    nextState = (nextState.content === selected) ?
+      Object.assign(nextState, {
         highlighted: true,
         style: this._getStyle(true)
-      })
-    }
-    console.log(nextState)
+      }) : nextState
     this.setState(nextState)
 
     if (type === 'PUT') {
       this._isFinished()
     }
+  },
+
+  _writeAsAnnotation() {
+    let value = annotationSelectStore.getState()
+    if (this.state.content > 0 || value === 0) return
+    let {sectionId, cellId} = this.props
+    let annotation = {
+      sectionId,
+      cellId,
+      value
+    }
+    // put or delete
+    let type = annotationStore.hasAnnotationOf(sectionId, cellId, value) ? 'DELETE' : 'PUT'
+    annotationStore.dispatch({type, payload: annotation})
+    this.setState({
+      annotations: annotationStore.getAnnotations(sectionId, cellId)
+    })
   },
 
   onSelecetedChange() {
@@ -84,11 +118,15 @@ const SudokuCell = React.createClass({
 
   _renderAnnotation() {
     if (this.state.content !== 0) return null
-
+    return (
+      <div>
+        {this.state.annotations}
+      </div>
+    )
   },
 
   _getStyle(highlighted) {
-    return highlighted ? {color: 'darkblue'} : {}
+    return highlighted ? {color: COLOR.ANSWER} : {}
   },
 
   _isFinished() {

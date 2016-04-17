@@ -1,14 +1,14 @@
 import React from 'react'
 import SudokuFooterButtonContainer from './sudoku_footer_button_container'
-import sudokuInputModeStore from '../stores/sudoku_input_mode_store'
+import inputModeStore from '../stores/sudoku_input_mode_store'
 import writingSelectStore from '../stores/writing_select_store'
 import annotationSelectStore from '../stores/annotation_select_store'
 import { INPUT_MODE } from '../util/consts'
 
 const SudokuFooterToggleButton = React.createClass({
   const: {
-    answerModeValue: 'W',
-    annotationModeValue: 'A'
+    answerModeValue: 'A',
+    annotationModeValue: 'W'
   },
 
   getInitialState() {
@@ -20,7 +20,7 @@ const SudokuFooterToggleButton = React.createClass({
   render() {
     let {value} = this.state
     return (
-      <SudokuFooterButtonContainer selected={false}>
+      <SudokuFooterButtonContainer isSelected={true} reverseColor={true}>
         <div id="sudoku-footer-toggle-button"
              onClick={this.onClick}
              >
@@ -35,7 +35,7 @@ const SudokuFooterToggleButton = React.createClass({
   },
 
   _toggle() {
-    sudokuInputModeStore.toggle()
+    inputModeStore.toggle()
     // writingSelectStore.dispatch({type: 'OFF'})
     // annotationSelectStore.dispatch({type: 'OFF'})
     this.setState({
@@ -44,7 +44,7 @@ const SudokuFooterToggleButton = React.createClass({
   },
 
   _getValue() {
-    let mode = sudokuInputModeStore.getMode()
+    let mode = inputModeStore.getMode()
     let {answerModeValue, annotationModeValue} = this.const
     if (mode === INPUT_MODE.ANSWER) {
       return answerModeValue

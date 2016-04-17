@@ -2,7 +2,7 @@ import React from 'react'
 import SudokuFooterButtonContainer from './sudoku_footer_button_container'
 import writingSelectStore from '../stores/writing_select_store'
 import annotationSelectStore from '../stores/annotation_select_store'
-import sudokuInputModeStore from '../stores/sudoku_input_mode_store'
+import inputModeStore from '../stores/sudoku_input_mode_store'
 import { INPUT_MODE } from '../util/consts'
 
 const SudokuFooterNumberButton = React.createClass({
@@ -21,7 +21,7 @@ const SudokuFooterNumberButton = React.createClass({
 
   onClick() {
     let {number, isSelected} = this.props
-    let mode = sudokuInputModeStore.getMode()
+    let mode = inputModeStore.getMode()
     let selectStore = (mode === INPUT_MODE.ANSWER) ? writingSelectStore : annotationSelectStore
     if (isSelected) {
       selectStore.dispatch({type: 'OFF'})

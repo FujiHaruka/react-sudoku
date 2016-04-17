@@ -39,7 +39,7 @@ function sudokuAnnotationReducer(state = {}, action) {
   }
 }
 
-const sudokuAnnotationStore = Object.assign(createStore(sudokuAnnotationReducer), {
+const annotationStore = Object.assign(createStore(sudokuAnnotationReducer), {
   // custom functions
   getAnnotations(sectionId, cellId) {
     let state = this.getState()
@@ -50,9 +50,11 @@ const sudokuAnnotationStore = Object.assign(createStore(sudokuAnnotationReducer)
     }
   },
   hasAnnotations(sectionId, cellId) {
-    let state = this.getState()
-    return this.getAnnotations().size() > 0
+    return this.getAnnotations(sectionId, cellId).size() > 0
+  },
+  hasAnnotationOf(sectionId, cellId, value) {
+    return this.getAnnotations(sectionId, cellId).has(value)
   }
 })
 
-export default sudokuAnnotationStore
+export default annotationStore

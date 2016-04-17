@@ -3,9 +3,9 @@ const INPUT_MODE = {
     ANNOTATION: 1
 }
 
-const OTHER = {
-  name: 'hoge',
-  age: 10
+const COLOR = {
+  ANSWER: 'darkblue',
+  ANNOTATION: 'darkgreen'
 }
 
-export {INPUT_MODE, OTHER}
+export {INPUT_MODE, COLOR}

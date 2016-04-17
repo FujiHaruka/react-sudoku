@@ -10,7 +10,7 @@ function sudokuInputModeReducer(state = true, action) {
   }
 }
 
-const sudokuInputModeStore = Object.assign(createStore(sudokuInputModeReducer), {
+const inputModeStore = Object.assign(createStore(sudokuInputModeReducer), {
   toggle() {
     let store = this.dispatch({type: 'TOGGLE'})
   },
@@ -23,4 +23,4 @@ const sudokuInputModeStore = Object.assign(createStore(sudokuInputModeReducer), 
   }
 })
 
-export default sudokuInputModeStore
+export default inputModeStore
