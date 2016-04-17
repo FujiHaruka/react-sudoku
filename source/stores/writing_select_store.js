@@ -1,6 +1,6 @@
 import { createStore } from 'redux'
 import sudokuSelectReducer from '../reducers/sudoku_select_reducer'
 
-const sudokuSelectStore = createStore(sudokuSelectReducer)
+const writingSelectStore = createStore(sudokuSelectReducer)
 
-export default sudokuSelectStore
+export default writingSelectStore

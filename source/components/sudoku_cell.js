@@ -1,6 +1,6 @@
 import React from 'react'
 import sudokuStore from '../stores/sudoku_store'
-import sudokuSelectStore from '../stores/sudoku_select_store'
+import writingSelectStore from '../stores/writing_select_store'
 import SUDOKU_UTIL from '../util/sudoku_util'
 
 const SudokuCell = React.createClass({
@@ -20,6 +20,7 @@ const SudokuCell = React.createClass({
            style={style}
            >
         {content === 0 ? null : content}
+        {this._renderAnnotation()}
       </div>
     )
   },
@@ -27,8 +28,8 @@ const SudokuCell = React.createClass({
   componentWillMount() {
     let {sectionId, cellId} = this.props
     let content = sudokuStore.getCellValue(sectionId, cellId)
-    let unsubscribed = sudokuSelectStore.subscribe(this.onSelecetedChange)
-    let highlighted = sudokuSelectStore.getState() === content
+    let unsubscribed = writingSelectStore.subscribe(this.onSelecetedChange)
+    let highlighted = writingSelectStore.getState() === content
     let initialState = {
       unsubscribed,
       highlighted,
@@ -46,7 +47,7 @@ const SudokuCell = React.createClass({
     let {variable, sectionId, cellId} = this.props
     let {content} = this.state
     if (!variable) return
-    let selected = sudokuSelectStore.getState()
+    let selected = writingSelectStore.getState()
     let type = (selected === 0 || selected === content) ? 'DELETE' : 'PUT'
     sudokuStore.dispatch({
       type: type,
@@ -75,14 +76,19 @@ const SudokuCell = React.createClass({
   },
 
   onSelecetedChange() {
-    let highlighted = sudokuSelectStore.getState() === this.state.content
+    let highlighted = writingSelectStore.getState() === this.state.content
     if (highlighted != this.state.highlighted) {
       this.setState({highlighted, style: this._getStyle(highlighted)})
     }
   },
 
+  _renderAnnotation() {
+    if (this.state.content !== 0) return null
+
+  },
+
   _getStyle(highlighted) {
-    return highlighted ? {color: 'red'} : {}
+    return highlighted ? {color: 'darkblue'} : {}
   },
 
   _isFinished() {

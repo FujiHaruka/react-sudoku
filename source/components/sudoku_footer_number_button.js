@@ -1,28 +1,33 @@
 import React from 'react'
-import sudokuSelectStore from '../stores/sudoku_select_store'
+import SudokuFooterButtonContainer from './sudoku_footer_button_container'
+import writingSelectStore from '../stores/writing_select_store'
+import annotationSelectStore from '../stores/annotation_select_store'
+import sudokuInputModeStore from '../stores/sudoku_input_mode_store'
+import { INPUT_MODE } from '../util/consts'
 
 const SudokuFooterNumberButton = React.createClass({
   render() {
     let {number, isSelected} = this.props
     return (
-      <div className="sudoku-footer-button"
-           id={`sudoku-footer-button-${number}`}
-           onClick={this.onClick}
-           data-selected={isSelected}
-           >
-        {number}
-      </div>
+      <SudokuFooterButtonContainer isSelected={isSelected}>
+        <div id={`sudoku-footer-button-${number}`}
+             onClick={this.onClick}
+             >
+          {number}
+        </div>
+      </SudokuFooterButtonContainer>
     )
   },
 
   onClick() {
     let {number, isSelected} = this.props
+    let mode = sudokuInputModeStore.getMode()
+    let selectStore = (mode === INPUT_MODE.ANSWER) ? writingSelectStore : annotationSelectStore
     if (isSelected) {
-      sudokuSelectStore.dispatch({type: 'OFF'})
+      selectStore.dispatch({type: 'OFF'})
     } else {
-      sudokuSelectStore.dispatch({type: 'SET', payload: Number(number)})
+      selectStore.dispatch({type: 'SET', payload: Number(number)})
     }
-    this.props.onStoreChange()
   }
 })
 
