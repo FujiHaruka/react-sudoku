@@ -42,6 +42,19 @@
   font-weight: bold;
 }
 
+.sudoku-cell-annotation {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.sudoku-cell-annotation-number {
+  font-size: 12px;
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+}
+
 .sudoku-footer {
   width: 456px;
   display: flex;

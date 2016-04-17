@@ -1,4 +1,5 @@
 import React from 'react'
+import SudokuCellAnnotation from './sudoku_cell_annotation'
 import sudokuStore from '../stores/sudoku_store'
 import annotationStore from '../stores/sudoku_annotation_store'
 import inputModeStore from '../stores/sudoku_input_mode_store'
@@ -119,9 +120,7 @@ const SudokuCell = React.createClass({
   _renderAnnotation() {
     if (this.state.content !== 0) return null
     return (
-      <div>
-        {this.state.annotations}
-      </div>
+      <SudokuCellAnnotation annotations={this.state.annotations} />
     )
   },
 
