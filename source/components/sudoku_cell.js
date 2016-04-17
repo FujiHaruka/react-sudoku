@@ -47,6 +47,15 @@ const SudokuCell = React.createClass({
     this.setState({
       content: sudokuStore.getCellValue(sectionId, cellId)
     })
+    if (type === 'PUT') {
+      this._isFinished()
+    }
+  },
+
+  _isFinished() {
+    if (sudokuStore.isFinished()) {
+      console.log('congraturations!!')
+    }
   }
 })
 

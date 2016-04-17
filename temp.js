@@ -6,5 +6,15 @@ var obj = {
     console.log('hoge')
   }
 }
-console.log(obj)
-obj.hoge()
+
+var obj2 = Object.assign(obj, {
+  fuga () {
+    return 10
+  },
+  fuge() {
+    return this.fuga() * 2
+  }
+})
+
+console.log(obj2.fuga())
+console.log(obj2.fuge())
