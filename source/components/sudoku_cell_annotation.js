@@ -16,8 +16,8 @@ const SudokuCellAnnotation = React.createClass({
 
     return (
       <div className="sudoku-cell-annotation">
-        {annotationList.map(i =>
-          <div className="sudoku-cell-annotation-number">
+        {annotationList.map((i, index) =>
+          <div className="sudoku-cell-annotation-number" key={index + 1}>
             {i}
           </div>
         )}

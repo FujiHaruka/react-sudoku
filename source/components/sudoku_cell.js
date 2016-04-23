@@ -1,12 +1,13 @@
 import React from 'react'
 import SudokuCellAnnotation from './sudoku_cell_annotation'
+import SudokuCellHighlightedStyle from './sudoku_cell_highlighted_style'
 import sudokuStore from '../stores/sudoku_store'
 import annotationStore from '../stores/sudoku_annotation_store'
 import inputModeStore from '../stores/sudoku_input_mode_store'
 import annotationSelectStore from '../stores/annotation_select_store'
 import writingSelectStore from '../stores/writing_select_store'
 import SUDOKU_UTIL from '../util/sudoku_util'
-import {INPUT_MODE, COLOR} from '../util/consts'
+import {INPUT_MODE} from '../util/consts'
 
 const SudokuCell = React.createClass({
   render() {
@@ -22,9 +23,10 @@ const SudokuCell = React.createClass({
            data-row-center={isRowCenter}
            data-fixed={!variable}
            onClick={this.onClick}
-           style={style}
            >
-        {content === 0 ? null : content}
+        <div className="sudoku-cell-content" style={style}>
+          {content === 0 ? null : content}
+        </div>
         {this._renderAnnotation()}
       </div>
     )
@@ -125,7 +127,7 @@ const SudokuCell = React.createClass({
   },
 
   _getStyle(highlighted) {
-    return highlighted ? {color: COLOR.ANSWER} : {}
+    return highlighted ? SudokuCellHighlightedStyle : {}
   },
 
   _isFinished() {

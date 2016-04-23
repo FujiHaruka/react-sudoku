@@ -1,0 +1,86 @@
+.body {
+  margin: auto;
+}
+
+.sudoku-board {
+  cursor: pointer;
+  width: 456px;
+  box-sizing: content-box;
+  display: flex;
+  flex-flow: row wrap;
+  border-right: 2px solid #666;
+  border-bottom: 2px solid #666;
+}
+
+.sudoku-section {
+  width: 152px;
+  height: 152px;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+  border-left: 2px solid #666;
+  border-top: 2px solid #666;
+}
+
+.sudoku-cell {
+  text-align: center;
+  box-sizing: border-box;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 30px;
+}
+
+.sudoku-cell[data-col-center="true"] {
+  border-left: 1px solid #666;
+  border-right: 1px solid #666;
+}
+
+.sudoku-cell[data-row-center="true"] {
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+
+.sudoku-cell[data-fixed="true"] {
+  color: #888;
+  font-weight: bold;
+}
+
+.sudoku-cell-annotation {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.sudoku-cell-annotation-number {
+  font-size: 12px;
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+}
+
+.sudoku-footer {
+  width: 456px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.sudoku-footer-button {
+  cursor: pointer;
+  box-sizing: border-box;
+  text-align: center;
+  width: 82px;
+  height: 82px;
+  line-height: 82px;
+  margin: 4px;
+  font-size: 50px;
+  color: white;
+  opacity: 0.8;
+  border-right: 2px solid #444;
+  border-bottom: 2px solid #444;
+}
+
+.sudoku-footer-button[data-selected="true"] {
+  opacity: 1.0;
+}

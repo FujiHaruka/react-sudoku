@@ -5,7 +5,8 @@ const INPUT_MODE = {
 
 const COLOR = {
   ANSWER: 'darkblue',
-  ANNOTATION: 'darkgreen'
+  ANNOTATION: 'darkgreen',
+  HIGHLIGHT: 'blue'
 }
 
 export {INPUT_MODE, COLOR}
