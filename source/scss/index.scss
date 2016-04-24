@@ -1,48 +1,90 @@
-.body {
-  margin: auto;
+// size
+$sudoku-cell-size: 66px;
+$sudoku-annotation-size: ($sudoku-cell-size - 8) / 3;
+$sudoku-section-size: $sudoku-cell-size * 3 + 2;
+$sudoku-board-size: $sudoku-section-size * 3;
+$mobile-sudoku-footer-button-size: $sudoku-board-size / 5 - 10;
+$pc-sudoku-footer-button-size: $sudoku-board-size / 10 - 8;
+// color
+$black: #666;
+$sudoku-fixed-number-color: #666;
+$sudoku-annotation-color: #666;
+$sudoku-highlight-color: #7070ff;
+// font size
+$sudoku-cell-font-size: $sudoku-cell-size * 0.7;
+$sudoku-annotation-font-size: $sudoku-cell-font-size * 0.4;
+$mobile-sudoku-footer-button-font-size: $mobile-sudoku-footer-button-size * 0.7;
+$pc-sudoku-footer-button-font-size: $pc-sudoku-footer-button-size * 0.7;
+// breakpoint and media query
+$breakpoint-mobile: 667px;
+@mixin max-screen($break-point) {
+  @media screen and (max-width: $break-point) {
+    @content;
+  }
+}
+@mixin min-screen($break-point) {
+  @media screen and (min-width: $break-point) {
+    @content;
+  }
+}
+@mixin screen($break-point-min, $break-point-max) {
+  @media screen and (min-width: $break-point-min) and (max-width: $break-point-max) {
+    @content;
+  }
 }
 
 .sudoku-board {
   cursor: pointer;
-  width: 456px;
+  width: $sudoku-board-size;
   box-sizing: content-box;
   display: flex;
   flex-flow: row wrap;
-  border-right: 2px solid #666;
-  border-bottom: 2px solid #666;
+  border-right: 2px solid $black;
+  border-bottom: 2px solid $black;
 }
 
 .sudoku-section {
-  width: 152px;
-  height: 152px;
+  width: $sudoku-section-size;
+  height: $sudoku-section-size;
   box-sizing: border-box;
   display: flex;
   flex-flow: row wrap;
-  border-left: 2px solid #666;
-  border-top: 2px solid #666;
+  border-left: 2px solid $black;
+  border-top: 2px solid $black;
 }
 
 .sudoku-cell {
-  text-align: center;
   box-sizing: border-box;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  font-size: 30px;
+  width: $sudoku-cell-size;
+  height: $sudoku-cell-size;
+}
+
+.sudoku-cell-content {
+  border: 4px solid rgba(255,255,255,0.0);
+  width: $sudoku-cell-size;
+  height: $sudoku-cell-size;
+  line-height: $sudoku-cell-size - 8;
+  text-align: center;
+  font-size: $sudoku-cell-font-size;
+  box-sizing: border-box;
+}
+
+.sudoku-cell-content[data-highlight="true"] {
+  border-color: $sudoku-highlight-color;
 }
 
 .sudoku-cell[data-col-center="true"] {
-  border-left: 1px solid #666;
-  border-right: 1px solid #666;
+  border-left: 1px solid $black;
+  border-right: 1px solid $black;
 }
 
 .sudoku-cell[data-row-center="true"] {
-  border-top: 1px solid #666;
-  border-bottom: 1px solid #666;
+  border-top: 1px solid $black;
+  border-bottom: 1px solid $black;
 }
 
 .sudoku-cell[data-fixed="true"] {
-  color: #888;
+  color: $sudoku-fixed-number-color;
   font-weight: bold;
 }
 
@@ -52,15 +94,16 @@
 }
 
 .sudoku-cell-annotation-number {
-  font-size: 12px;
+  color: $sudoku-annotation-color;
+  font-size: $sudoku-annotation-font-size;
   box-sizing: border-box;
-  width: 16px;
-  height: 16px;
-  line-height: 16px;
+  width: $sudoku-annotation-size;
+  height: $sudoku-annotation-size;
+  line-height: $sudoku-annotation-size;
 }
 
 .sudoku-footer {
-  width: 456px;
+  width: $sudoku-board-size;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -70,15 +113,23 @@
   cursor: pointer;
   box-sizing: border-box;
   text-align: center;
-  width: 82px;
-  height: 82px;
-  line-height: 82px;
   margin: 4px;
-  font-size: 50px;
   color: white;
-  opacity: 0.8;
-  border-right: 2px solid #444;
-  border-bottom: 2px solid #444;
+  opacity: 0.6;
+  border-right: 2px solid $black;
+  border-bottom: 2px solid $black;
+  @include max-screen($breakpoint-mobile) {
+    width:  $mobile-sudoku-footer-button-size;
+    height: $mobile-sudoku-footer-button-size;
+    line-height: $mobile-sudoku-footer-button-size;
+    font-size: $mobile-sudoku-footer-button-font-size;
+  }
+  @include min-screen($breakpoint-mobile) {
+    width:  $pc-sudoku-footer-button-size;
+    height: $pc-sudoku-footer-button-size;
+    line-height: $pc-sudoku-footer-button-size;
+    font-size: $pc-sudoku-footer-button-font-size;
+  }
 }
 
 .sudoku-footer-button[data-selected="true"] {

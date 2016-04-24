@@ -1,6 +1,5 @@
 import React from 'react'
 import SudokuCellAnnotation from './sudoku_cell_annotation'
-import SudokuCellHighlightedStyle from './sudoku_cell_highlighted_style'
 import sudokuStore from '../stores/sudoku_store'
 import annotationStore from '../stores/sudoku_annotation_store'
 import inputModeStore from '../stores/sudoku_input_mode_store'
@@ -12,7 +11,7 @@ import {INPUT_MODE} from '../util/consts'
 const SudokuCell = React.createClass({
   render() {
     let {sectionId, cellId, variable} = this.props
-    let {content, style} = this.state
+    let {content, style, highlighted} = this.state
     let isColCenter = cellId % 3 === 1
     let isRowCenter = Math.floor(cellId / 3) === 1
 
@@ -24,10 +23,10 @@ const SudokuCell = React.createClass({
            data-fixed={!variable}
            onClick={this.onClick}
            >
-        <div className="sudoku-cell-content" style={style}>
+        <div className="sudoku-cell-content" style={style} data-highlight={highlighted}>
           {content === 0 ? null : content}
-        </div>
         {this._renderAnnotation()}
+        </div>
       </div>
     )
   },
@@ -36,13 +35,12 @@ const SudokuCell = React.createClass({
     let {sectionId, cellId} = this.props
     let content = sudokuStore.getCellValue(sectionId, cellId)
     let unsubscribed = writingSelectStore.subscribe(this.onSelecetedChange)
-    let highlighted = writingSelectStore.getState() === content
+    let highlighted = content > 0 && writingSelectStore.getState() === content
     let initialState = {
       unsubscribed,
       highlighted,
       content,
-      annotations: new Set(),
-      style: this._getStyle(highlighted)
+      annotations: new Set()
     }
     this.setState(initialState)
   },
@@ -85,8 +83,7 @@ const SudokuCell = React.createClass({
     }
     nextState = (nextState.content === selected) ?
       Object.assign(nextState, {
-        highlighted: true,
-        style: this._getStyle(true)
+        highlighted: true
       }) : nextState
     this.setState(nextState)
 
@@ -113,9 +110,10 @@ const SudokuCell = React.createClass({
   },
 
   onSelecetedChange() {
-    let highlighted = writingSelectStore.getState() === this.state.content
+    let {content} = this.state
+    let highlighted = content > 0 && writingSelectStore.getState() === content
     if (highlighted != this.state.highlighted) {
-      this.setState({highlighted, style: this._getStyle(highlighted)})
+      this.setState({highlighted})
     }
   },
 
@@ -124,10 +122,6 @@ const SudokuCell = React.createClass({
     return (
       <SudokuCellAnnotation annotations={this.state.annotations} />
     )
-  },
-
-  _getStyle(highlighted) {
-    return highlighted ? SudokuCellHighlightedStyle : {}
   },
 
   _isFinished() {

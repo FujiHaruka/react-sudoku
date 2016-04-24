@@ -1,9 +1,6 @@
-.body {
-  margin: auto; }
-
 .sudoku-board {
   cursor: pointer;
-  width: 456px;
+  width: 600px;
   box-sizing: content-box;
   display: -webkit-box;
   display: -webkit-flex;
@@ -16,8 +13,8 @@
   border-bottom: 2px solid #666; }
 
 .sudoku-section {
-  width: 152px;
-  height: 152px;
+  width: 200px;
+  height: 200px;
   box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
@@ -30,12 +27,21 @@
   border-top: 2px solid #666; }
 
 .sudoku-cell {
-  text-align: center;
   box-sizing: border-box;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  font-size: 30px; }
+  width: 66px;
+  height: 66px; }
+
+.sudoku-cell-content {
+  border: 4px solid rgba(255, 255, 255, 0);
+  width: 66px;
+  height: 66px;
+  line-height: 58px;
+  text-align: center;
+  font-size: 46.2px;
+  box-sizing: border-box; }
+
+.sudoku-cell-content[data-highlight="true"] {
+  border-color: #7070ff; }
 
 .sudoku-cell[data-col-center="true"] {
   border-left: 1px solid #666;
@@ -46,7 +52,7 @@
   border-bottom: 1px solid #666; }
 
 .sudoku-cell[data-fixed="true"] {
-  color: #888;
+  color: #666;
   font-weight: bold; }
 
 .sudoku-cell-annotation {
@@ -59,14 +65,15 @@
           flex-flow: row wrap; }
 
 .sudoku-cell-annotation-number {
-  font-size: 12px;
+  color: #666;
+  font-size: 18.48px;
   box-sizing: border-box;
-  width: 16px;
-  height: 16px;
-  line-height: 16px; }
+  width: 19.33333px;
+  height: 19.33333px;
+  line-height: 19.33333px; }
 
 .sudoku-footer {
-  width: 456px;
+  width: 600px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -83,15 +90,23 @@
   cursor: pointer;
   box-sizing: border-box;
   text-align: center;
-  width: 82px;
-  height: 82px;
-  line-height: 82px;
   margin: 4px;
-  font-size: 50px;
   color: white;
-  opacity: 0.8;
-  border-right: 2px solid #444;
-  border-bottom: 2px solid #444; }
+  opacity: 0.6;
+  border-right: 2px solid #666;
+  border-bottom: 2px solid #666; }
+  @media screen and (max-width: 667px) {
+    .sudoku-footer-button {
+      width: 110px;
+      height: 110px;
+      line-height: 110px;
+      font-size: 77px; } }
+  @media screen and (min-width: 667px) {
+    .sudoku-footer-button {
+      width: 52px;
+      height: 52px;
+      line-height: 52px;
+      font-size: 36.4px; } }
 
 .sudoku-footer-button[data-selected="true"] {
   opacity: 1.0; }
