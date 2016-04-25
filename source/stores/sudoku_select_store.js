@@ -1,6 +1,6 @@
 import { createStore } from 'redux'
 
-function sudokuAnnotationSelectReducer(state = 0, action) {
+function sudokuSelectReducer(state = 0, action) {
   switch (action.type) {
     case 'SET':
       return action.payload
@@ -11,6 +11,6 @@ function sudokuAnnotationSelectReducer(state = 0, action) {
   }
 }
 
-const annotationSelectStore = createStore(sudokuAnnotationSelectReducer)
+const sudokuSelectStore = createStore(sudokuSelectReducer)
 
-export default annotationSelectStore
+export default sudokuSelectStore

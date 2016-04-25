@@ -2,14 +2,13 @@ import React from 'react'
 import SudokuFooterNumberButton from './sudoku_footer_number_button'
 import SudokuFooterToggleButton from './sudoku_footer_toggle_button'
 import inputModeStore from '../stores/sudoku_input_mode_store'
-import writingSelectStore from '../stores/writing_select_store'
-import annotationSelectStore from '../stores/annotation_select_store'
+import sudokuSelectStore from '../stores/sudoku_select_store'
 import {INPUT_MODE} from '../util/consts'
 
 const SudokuFooter = React.createClass({
   getInitialState() {
     return {
-      selected: writingSelectStore.getState()
+      selected: sudokuSelectStore.getState()
     }
   },
 
@@ -27,8 +26,7 @@ const SudokuFooter = React.createClass({
 
   componentWillMount() {
     inputModeStore.subscribe(this.handleSelectStoreChange)
-    writingSelectStore.subscribe(this.handleSelectStoreChange)
-    annotationSelectStore.subscribe(this.handleSelectStoreChange)
+    sudokuSelectStore.subscribe(this.handleSelectStoreChange)
   },
 
   handleSelectStoreChange() {
@@ -37,26 +35,13 @@ const SudokuFooter = React.createClass({
   },
 
   _setSelected(mode) {
-    switch (mode) {
-      case INPUT_MODE.ANSWER:
-        this.setState({
-          selected: writingSelectStore.getState()
-        })
-        return
-      case INPUT_MODE.ANNOTATION:
-        this.setState({
-          selected: annotationSelectStore.getState()
-        })
-        return
-      default:
-        return
-    }
+    this.setState({
+      selected: sudokuSelectStore.getState()
+    })
   },
 
   _renderNumberButton(number) {
-    let mode = inputModeStore.getMode()
-    let selectedStore = mode === INPUT_MODE.ANSWER ? writingSelectStore : annotationSelectStore
-    let selected = selectedStore.getState()
+    let selected = sudokuSelectStore.getState()
     let isSelected = selected === number
     return (
       <SudokuFooterNumberButton number={number}

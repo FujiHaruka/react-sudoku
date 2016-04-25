@@ -1,8 +1,6 @@
 import React from 'react'
 import SudokuFooterButtonContainer from './sudoku_footer_button_container'
 import inputModeStore from '../stores/sudoku_input_mode_store'
-import writingSelectStore from '../stores/writing_select_store'
-import annotationSelectStore from '../stores/annotation_select_store'
 import { INPUT_MODE } from '../util/consts'
 
 const SudokuFooterToggleButton = React.createClass({
@@ -36,8 +34,6 @@ const SudokuFooterToggleButton = React.createClass({
 
   _toggle() {
     inputModeStore.toggle()
-    // writingSelectStore.dispatch({type: 'OFF'})
-    // annotationSelectStore.dispatch({type: 'OFF'})
     this.setState({
       value: this._getValue()
     })

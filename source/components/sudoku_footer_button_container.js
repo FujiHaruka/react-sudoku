@@ -1,7 +1,5 @@
 import React from 'react'
 import inputModeStore from '../stores/sudoku_input_mode_store'
-import annotationSelectStore from '../stores/annotation_select_store'
-import writingSelectStore from '../stores/writing_select_store'
 import { INPUT_MODE, COLOR } from '../util/consts'
 
 const SudokuFooterButtonContainer = React.createClass({
