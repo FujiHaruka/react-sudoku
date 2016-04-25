@@ -1,3 +1,5 @@
+import LocalStorage from '../util/localstorage'
+
 // number[9][9]
 // INIT
 // payload = '0010200214012010...'
@@ -29,7 +31,7 @@ function isVariable (number) {
 export default function sudokuReducer (state = [], action) {
   switch (action.type) {
     case 'INIT':
-      return action.payload.split('').reduce((prev, cur, i) => {
+      let init = action.payload.split('').reduce((prev, cur, i) => {
         if (i % 9 === 0) {
           prev.push([cell(Number(cur), isVariable(cur))])
         } else {
@@ -37,10 +39,18 @@ export default function sudokuReducer (state = [], action) {
         }
         return prev
       }, [])
+      LocalStorage.putSudoku(init)
+      return init
     case 'PUT':
-      return put(state, action.payload.row, action.payload.col, action.payload.value)
+      let putting = put(state, action.payload.row, action.payload.col, action.payload.value)
+      LocalStorage.putSudoku(putting)
+      return putting
     case 'DELETE':
-      return put(state, action.payload.row, action.payload.col, 0)
+      let deleting = put(state, action.payload.row, action.payload.col, 0)
+      LocalStorage.putSudoku(deleting)
+      return deleting
+    case 'SET':
+      return action.payload
     default:
       return state
   }
