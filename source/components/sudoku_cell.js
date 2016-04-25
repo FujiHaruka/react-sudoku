@@ -86,7 +86,7 @@ const SudokuCell = React.createClass({
     let nextState = {
       content: sudokuStore.getCellValue(sectionId, cellId)
     }
-    let highlighted = (nextState.content === selected)
+    let highlighted = (nextState.content === selected) && (nextState.content !== 0)
     nextState = Object.assign(nextState, {highlighted})
     this.setState(nextState)
 
