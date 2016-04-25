@@ -1,21 +1,19 @@
 import React from 'react'
-import sudokuStore from '../stores/sudoku_store'
-import annotationStore from '../stores/sudoku_annotation_store'
-import inputModeStore from '../stores/sudoku_input_mode_store'
-import SUDOKU_UTIL from '../util/sudoku_util'
-import {INPUT_MODE, COLOR} from '../util/consts'
 
 const SudokuCellAnnotation = React.createClass({
-  render() {
+  propTypes: {
+    annotations: React.PropTypes.object
+  },
+  render () {
     let {annotations} = this.props
-    let annotationList = [1,2,3,4,5,6,7,8,9].map(i => {
+    let annotationList = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => {
       return annotations.has(i) ? i : ''
     })
 
     return (
-      <div className="sudoku-cell-annotation">
+      <div className='sudoku-cell-annotation'>
         {annotationList.map((i, index) =>
-          <div className="sudoku-cell-annotation-number" key={index + 1}>
+          <div className='sudoku-cell-annotation-number' key={index + 1}>
             {i}
           </div>
         )}

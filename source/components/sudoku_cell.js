@@ -8,21 +8,27 @@ import SUDOKU_UTIL from '../util/sudoku_util'
 import {INPUT_MODE} from '../util/consts'
 
 const SudokuCell = React.createClass({
-  render() {
-    let {sectionId, cellId, variable} = this.props
+  propTypes: {
+    sectionId: React.PropTypes.number,
+    cellId: React.PropTypes.number,
+    variable: React.PropTypes.bool
+  },
+
+  render () {
+    let {cellId, variable} = this.props
     let {content, style, highlighted} = this.state
     let isColCenter = cellId % 3 === 1
     let isRowCenter = Math.floor(cellId / 3) === 1
 
     return (
-      <div className="sudoku-cell"
+      <div className='sudoku-cell'
            id={`sudoku-cell-${cellId}`}
            data-col-center={isColCenter}
            data-row-center={isRowCenter}
            data-fixed={!variable}
            onClick={this.onClick}
            >
-        <div className="sudoku-cell-content" style={style} data-highlight={highlighted}>
+        <div className='sudoku-cell-content' style={style} data-highlight={highlighted}>
           {content === 0 ? null : content}
         {this._renderAnnotation()}
         </div>
@@ -30,7 +36,7 @@ const SudokuCell = React.createClass({
     )
   },
 
-  componentWillMount() {
+  componentWillMount () {
     let {sectionId, cellId} = this.props
     let content = sudokuStore.getCellValue(sectionId, cellId)
     let unsubscribed = sudokuSelectStore.subscribe(this.onSelecetedChange)
@@ -44,11 +50,11 @@ const SudokuCell = React.createClass({
     this.setState(initialState)
   },
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.state.unsubscribed()
   },
 
-  onClick() {
+  onClick () {
     let mode = inputModeStore.getMode()
     switch (mode) {
       case INPUT_MODE.ANSWER:
@@ -62,7 +68,7 @@ const SudokuCell = React.createClass({
     }
   },
 
-  _writeAsAnswer() {
+  _writeAsAnswer () {
     let {variable, sectionId, cellId} = this.props
     let {content} = this.state
     if (!variable) return
@@ -89,7 +95,7 @@ const SudokuCell = React.createClass({
     }
   },
 
-  _writeAsAnnotation() {
+  _writeAsAnnotation () {
     let value = sudokuSelectStore.getState()
     if (this.state.content > 0 || value === 0) return
     let {sectionId, cellId} = this.props
@@ -106,24 +112,24 @@ const SudokuCell = React.createClass({
     })
   },
 
-  onSelecetedChange() {
+  onSelecetedChange () {
     let {content} = this.state
     let highlighted = content > 0 && sudokuSelectStore.getState() === content
-    if (highlighted != this.state.highlighted) {
+    if (highlighted !== this.state.highlighted) {
       this.setState({highlighted})
     }
   },
 
-  _renderAnnotation() {
+  _renderAnnotation () {
     if (this.state.content !== 0) return null
     return (
       <SudokuCellAnnotation annotations={this.state.annotations} />
     )
   },
 
-  _isFinished() {
+  _isFinished () {
     if (sudokuStore.isFinished()) {
-      console.log('congraturations!!')
+      window.alert('congraturations!!')
     }
   }
 })

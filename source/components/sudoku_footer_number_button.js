@@ -1,14 +1,17 @@
 import React from 'react'
 import SudokuFooterButtonContainer from './sudoku_footer_button_container'
 import sudokuSelectStore from '../stores/sudoku_select_store'
-import inputModeStore from '../stores/sudoku_input_mode_store'
-import { INPUT_MODE } from '../util/consts'
 
 const SudokuFooterNumberButton = React.createClass({
-  render() {
+  propTypes: {
+    isSelected: React.PropTypes.bool,
+    number: React.PropTypes.number
+  },
+
+  render () {
     let {number, isSelected} = this.props
     return (
-      <SudokuFooterButtonContainer isSelected={isSelected}>
+      <SudokuFooterButtonContainer isSelected={isSelected} reverseColor={false}>
         <div id={`sudoku-footer-button-${number}`}
              onClick={this.onClick}
              >
@@ -18,9 +21,8 @@ const SudokuFooterNumberButton = React.createClass({
     )
   },
 
-  onClick() {
+  onClick () {
     let {number, isSelected} = this.props
-    let mode = inputModeStore.getMode()
     if (isSelected) {
       sudokuSelectStore.dispatch({type: 'OFF'})
     } else {

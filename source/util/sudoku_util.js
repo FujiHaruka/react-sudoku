@@ -1,15 +1,15 @@
 const SUDOKU_UTIL = {
   // shoud move to other lib
-  idToRow: function (sectionId, cellId) {
+  idToRow (sectionId, cellId) {
     return Math.floor(sectionId / 3) * 3 + Math.floor(cellId / 3)
   },
-  idToCol: function (sectionId, cellId) {
+  idToCol (sectionId, cellId) {
     return (sectionId % 3) * 3 + (cellId % 3)
   },
-  coordToSectionId: function (row, col) {
+  coordToSectionId (row, col) {
     return Math.floor(col / 3) + Math.floor(col / 3) * 3
   },
-  coordToCellId: function (row, col) {
+  coordToCellId (row, col) {
     return (col % 3) + (row % 3) * 3
   }
 }

@@ -1,7 +1,7 @@
 import { createStore } from 'redux'
 import { INPUT_MODE } from '../util/consts'
 
-function sudokuInputModeReducer(state = true, action) {
+function sudokuInputModeReducer (state = true, action) {
   switch (action.type) {
     case 'TOGGLE':
       return !state
@@ -11,10 +11,10 @@ function sudokuInputModeReducer(state = true, action) {
 }
 
 const inputModeStore = Object.assign(createStore(sudokuInputModeReducer), {
-  toggle() {
-    let store = this.dispatch({type: 'TOGGLE'})
+  toggle () {
+    this.dispatch({type: 'TOGGLE'})
   },
-  getMode() {
+  getMode () {
     if (this.getState()) {
       return INPUT_MODE.ANSWER
     } else {

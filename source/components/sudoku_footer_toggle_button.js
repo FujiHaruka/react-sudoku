@@ -9,17 +9,17 @@ const SudokuFooterToggleButton = React.createClass({
     annotationModeValue: 'W'
   },
 
-  getInitialState() {
+  getInitialState () {
     return {
       value: this._getValue()
     }
   },
 
-  render() {
+  render () {
     let {value} = this.state
     return (
       <SudokuFooterButtonContainer isSelected={true} reverseColor={true}>
-        <div id="sudoku-footer-toggle-button"
+        <div id='sudoku-footer-toggle-button'
              onClick={this.onClick}
              >
           {value}
@@ -28,18 +28,18 @@ const SudokuFooterToggleButton = React.createClass({
     )
   },
 
-  onClick() {
+  onClick () {
     this._toggle()
   },
 
-  _toggle() {
+  _toggle () {
     inputModeStore.toggle()
     this.setState({
       value: this._getValue()
     })
   },
 
-  _getValue() {
+  _getValue () {
     let mode = inputModeStore.getMode()
     let {answerModeValue, annotationModeValue} = this.const
     if (mode === INPUT_MODE.ANSWER) {

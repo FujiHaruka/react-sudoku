@@ -3,7 +3,7 @@ import SudokuBoard from './sudoku_board'
 import SudokuFooter from './sudoku_footer'
 
 const SudokuMain = React.createClass({
-  render() {
+  render () {
     return (
       <div>
         <SudokuBoard />

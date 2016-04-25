@@ -8,25 +8,25 @@
 // peyload = {col: 1, row: 2}
 // -> sudoku[1][2] = 0
 
-function cell(value, variable) {
+function cell (value, variable) {
   return {
     value: value,
     variable: variable
   }
 }
 
-function put(state, row, col, value) {
+function put (state, row, col, value) {
   if (state[row][col].variable) {
     state[row][col].value = value
   }
   return [].concat(state)
 }
 
-function isVariable(number) {
+function isVariable (number) {
   return Number(number) === 0
 }
 
-export default function sudokuReducer(state = [], action) {
+export default function sudokuReducer (state = [], action) {
   switch (action.type) {
     case 'INIT':
       return action.payload.split('').reduce((prev, cur, i) => {

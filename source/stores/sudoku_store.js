@@ -23,7 +23,7 @@ const sudokuStore = Object.assign(store, {
   },
   isFinished () {
     if (!this.isFilledAll()) {
-     return false
+      return false
     }
     // 各行、列、ブロック内で数字がただ一度だけ使われていることを確認する
     let state = store.getState()
@@ -53,7 +53,7 @@ const sudokuStore = Object.assign(store, {
             block.add(state[3 * i + k][3 * j + l].value)
           }
         }
-        if (block.size != 9) {
+        if (block.size !== 9) {
           return false
         }
       }
