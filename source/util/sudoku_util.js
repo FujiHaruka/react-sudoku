@@ -1,3 +1,5 @@
+import ENCODED from './problems'
+
 const SUDOKU_UTIL = {
   // shoud move to other lib
   idToRow (sectionId, cellId) {
@@ -11,6 +13,11 @@ const SUDOKU_UTIL = {
   },
   coordToCellId (row, col) {
     return (col % 3) + (row % 3) * 3
+  },
+  getTodaysGame (difficulty) {
+    let number = (new Date()).getDate() - 1
+    let decoded = window.atob(ENCODED[difficulty][number])
+    return decoded
   }
 }
 

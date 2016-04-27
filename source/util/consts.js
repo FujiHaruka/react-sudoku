@@ -8,4 +8,11 @@ const COLOR = {
   ANNOTATION: 'darkgreen'
 }
 
-export {INPUT_MODE, COLOR}
+const DIFFICUITY = {
+  easy: 'かんたん',
+  nomal: 'ふつう',
+  hard: 'むずかしい',
+  expert: '激むず'
+}
+
+export {INPUT_MODE, COLOR, DIFFICUITY}

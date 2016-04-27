@@ -5,16 +5,21 @@ $sudoku-section-size: $sudoku-cell-size * 3 + 2;
 $sudoku-board-size: $sudoku-section-size * 3;
 $mobile-sudoku-footer-button-size: $sudoku-board-size / 5 - 10;
 $pc-sudoku-footer-button-size: $sudoku-board-size / 10 - 8;
+$mobile-select-problem-button-size: $sudoku-board-size * 0.8;
+$pc-select-problem-button-size: $sudoku-board-size * 0.4;
+
 // color
 $black: #666;
 $sudoku-fixed-number-color: #666;
 $sudoku-annotation-color: #666;
 $sudoku-highlight-color: #7070ff;
+$select-problem-button-color: darkblue;
 // font size
 $sudoku-cell-font-size: $sudoku-cell-size * 0.7;
 $sudoku-annotation-font-size: $sudoku-cell-font-size * 0.4;
 $mobile-sudoku-footer-button-font-size: $mobile-sudoku-footer-button-size * 0.7;
 $pc-sudoku-footer-button-font-size: $pc-sudoku-footer-button-size * 0.7;
+$select-problem-font-size: $sudoku-cell-size * 0.8;
 // breakpoint and media query
 $breakpoint-mobile: 667px;
 @mixin max-screen($break-point) {
@@ -33,6 +38,22 @@ $breakpoint-mobile: 667px;
   }
 }
 
+//------- header ---------
+
+.header {
+  width: $sudoku-board-size;
+  #header-title {
+    color: $black;
+    text-align: center;
+  }
+  #header-message {
+    color: #888;
+  }
+}
+
+
+//------- sudoku ---------
+
 .sudoku-board {
   cursor: pointer;
   width: $sudoku-board-size;
@@ -41,6 +62,12 @@ $breakpoint-mobile: 667px;
   flex-flow: row wrap;
   border-right: 2px solid $black;
   border-bottom: 2px solid $black;
+}
+
+.sudoku-header-message {
+  width: $sudoku-board-size;
+  text-align: right;
+  font-size: 15px;
 }
 
 .sudoku-section {
@@ -134,4 +161,42 @@ $breakpoint-mobile: 667px;
 
 .sudoku-footer-button[data-selected="true"] {
   opacity: 1.0;
+}
+
+//------ select problem -------
+.select-problem {
+  width: $sudoku-board-size;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 20px;
+}
+
+.select-problem #select-problem-title {
+  width: $sudoku-board-size;
+  text-align: center;
+  font-size: $sudoku-cell-font-size * 0.7;
+  color: $black;
+}
+
+.select-problem-button {
+  text-align: center;
+  height: $sudoku-cell-size;
+  background-color: $select-problem-button-color;
+  color: white;
+  opacity: 0.6;
+  font-size: $sudoku-cell-font-size;
+  @include max-screen($breakpoint-mobile) {
+    margin-left: ($sudoku-board-size - $mobile-select-problem-button-size) / 2;
+    margin-right: ($sudoku-board-size - $mobile-select-problem-button-size) / 2;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: $mobile-select-problem-button-size;
+  };
+  @include min-screen($breakpoint-mobile) {
+    margin-left: ($sudoku-board-size - $pc-select-problem-button-size) / 2;
+    margin-right: ($sudoku-board-size - $pc-select-problem-button-size) / 2;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: $pc-select-problem-button-size;
+  };
 }

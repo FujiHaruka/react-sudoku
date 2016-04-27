@@ -1,6 +1,7 @@
 let {localStorage} = window
 
 const LocalStorage = {
+  // sudoku problem
   getSudoku () {
     let sudoku = localStorage.getItem('sudoku')
     if (sudoku) {
@@ -12,6 +13,20 @@ const LocalStorage = {
   },
   clearSudoku () {
     localStorage.removeItem('sudoku')
+  },
+
+  // sudoku difficulty
+  getDifficulty () {
+    let difficulty = localStorage.getItem('difficulty')
+    if (difficulty) {
+      return difficulty
+    }
+  },
+  putDifficulty (difficulty) {
+    localStorage.setItem('difficulty', difficulty)
+  },
+  clearDifficulty () {
+    localStorage.removeItem('difficulty')
   }
 }
 

@@ -1,3 +1,11 @@
+.header {
+  width: 600px; }
+  .header #header-title {
+    color: #666;
+    text-align: center; }
+  .header #header-message {
+    color: #888; }
+
 .sudoku-board {
   cursor: pointer;
   width: 600px;
@@ -11,6 +19,11 @@
           flex-flow: row wrap;
   border-right: 2px solid #666;
   border-bottom: 2px solid #666; }
+
+.sudoku-header-message {
+  width: 600px;
+  text-align: right;
+  font-size: 15px; }
 
 .sudoku-section {
   width: 200px;
@@ -110,3 +123,42 @@
 
 .sudoku-footer-button[data-selected="true"] {
   opacity: 1.0; }
+
+.select-problem {
+  width: 600px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  margin: 20px; }
+
+.select-problem #select-problem-title {
+  width: 600px;
+  text-align: center;
+  font-size: 32.34px;
+  color: #666; }
+
+.select-problem-button {
+  text-align: center;
+  height: 66px;
+  background-color: darkblue;
+  color: white;
+  opacity: 0.6;
+  font-size: 46.2px; }
+  @media screen and (max-width: 667px) {
+    .select-problem-button {
+      margin-left: 60px;
+      margin-right: 60px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 480px; } }
+  @media screen and (min-width: 667px) {
+    .select-problem-button {
+      margin-left: 180px;
+      margin-right: 180px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 240px; } }
