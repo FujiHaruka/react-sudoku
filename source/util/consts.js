@@ -3,11 +3,6 @@ const INPUT_MODE = {
   ANNOTATION: 1
 }
 
-const COLOR = {
-  ANSWER: 'darkblue',
-  ANNOTATION: 'darkgreen'
-}
-
 const DIFFICUITY = {
   easy: 'かんたん',
   nomal: 'ふつう',
@@ -15,4 +10,4 @@ const DIFFICUITY = {
   expert: '激むず'
 }
 
-export {INPUT_MODE, COLOR, DIFFICUITY}
+export {INPUT_MODE, DIFFICUITY}

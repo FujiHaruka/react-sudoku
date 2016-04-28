@@ -13,7 +13,7 @@ $black: #666;
 $sudoku-fixed-number-color: #666;
 $sudoku-annotation-color: #666;
 $sudoku-highlight-color: #7070ff;
-$select-problem-button-color: darkblue;
+$select-problem-button-color: #5D5DB6;
 // font size
 $sudoku-cell-font-size: $sudoku-cell-size * 0.7;
 $sudoku-annotation-font-size: $sudoku-cell-font-size * 0.4;
@@ -55,6 +55,7 @@ $breakpoint-mobile: 667px;
 //------- sudoku ---------
 
 .sudoku-board {
+  user-select: none;
   cursor: pointer;
   width: $sudoku-board-size;
   box-sizing: content-box;
@@ -137,14 +138,14 @@ $breakpoint-mobile: 667px;
 }
 
 .sudoku-footer-button {
+  user-select: none;
   cursor: pointer;
   box-sizing: border-box;
   text-align: center;
   margin: 4px;
   color: white;
-  opacity: 0.6;
-  border-right: 2px solid $black;
-  border-bottom: 2px solid $black;
+  border-right: 2px solid #333;
+  border-bottom: 2px solid #333;
   @include max-screen($breakpoint-mobile) {
     width:  $mobile-sudoku-footer-button-size;
     height: $mobile-sudoku-footer-button-size;
@@ -159,8 +160,24 @@ $breakpoint-mobile: 667px;
   }
 }
 
-.sudoku-footer-button[data-selected="true"] {
-  opacity: 1.0;
+// mode = ANSWER
+.sudoku-footer-button[data-color="0 false"] {
+  background-color: rgba(0, 0, 140, 0.6);
+}
+.sudoku-footer-button[data-color="0 true"] {
+  background-color: rgba(0, 0, 140, 1.0);
+  border-right: 2px solid rgba(0, 0, 140, 1.0);
+  border-bottom: 2px solid rgba(0, 0, 140, 1.0);
+}
+
+// mode = ANNOTATION
+.sudoku-footer-button[data-color="1 false"] {
+  background-color: rgba(0, 100, 0, 0.6);
+}
+.sudoku-footer-button[data-color="1 true"] {
+  background-color: rgba(0, 100, 0, 1.0);
+  border-right: 2px solid rgba(0, 100, 0, 1.0);
+  border-bottom: 2px solid rgba(0, 100, 0, 1.0);
 }
 
 //------ select problem -------
@@ -183,7 +200,7 @@ $breakpoint-mobile: 667px;
   height: $sudoku-cell-size;
   background-color: $select-problem-button-color;
   color: white;
-  opacity: 0.6;
+  border: 2px solid #222;
   font-size: $sudoku-cell-font-size;
   @include max-screen($breakpoint-mobile) {
     margin-left: ($sudoku-board-size - $mobile-select-problem-button-size) / 2;

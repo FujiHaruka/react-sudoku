@@ -1,6 +1,6 @@
 import React from 'react'
 import inputModeStore from '../stores/sudoku_input_mode_store'
-import { INPUT_MODE, COLOR } from '../util/consts'
+import { INPUT_MODE } from '../util/consts'
 
 const SudokuFooterButtonContainer = React.createClass({
   propTypes: {
@@ -9,38 +9,33 @@ const SudokuFooterButtonContainer = React.createClass({
     children: React.PropTypes.object
   },
 
-  styles (mode) {
+  getMode (mode) {
     if (this.props.reverseColor) {
       mode = (inputModeStore.getMode() === INPUT_MODE.ANSWER) ? INPUT_MODE.ANNOTATION : INPUT_MODE.ANSWER
     }
-    switch (mode) {
-      case INPUT_MODE.ANSWER:
-        return {['backgroundColor']: COLOR.ANSWER}
-      case INPUT_MODE.ANNOTATION:
-        return {['backgroundColor']: COLOR.ANNOTATION}
-      default:
-        return {['backgroundColor']: COLOR.ANSWER}
-    }
+    return mode
   },
 
   render () {
+    let {isSelected} = this.props
+    let {mode} = this.state
+    let colorData = mode + ' ' + isSelected
     return (
       <div className='sudoku-footer-button'
-           data-selected={this.props.isSelected}
-           style={this.state.style}>
+           data-color={colorData}>
         {this.props.children}
       </div>
     )
   },
 
   componentWillMount () {
-    this.setState({style: this.styles(null)})
+    this.setState({mode: INPUT_MODE.ANSWER})
     inputModeStore.subscribe(this.handleToggle)
   },
 
   handleToggle () {
     let mode = inputModeStore.getMode()
-    this.setState({style: this.styles(mode)})
+    this.setState({mode: this.getMode(mode)})
   }
 })
 

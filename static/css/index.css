@@ -7,6 +7,10 @@
     color: #888; }
 
 .sudoku-board {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   cursor: pointer;
   width: 600px;
   box-sizing: content-box;
@@ -100,14 +104,17 @@
           justify-content: space-between; }
 
 .sudoku-footer-button {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   cursor: pointer;
   box-sizing: border-box;
   text-align: center;
   margin: 4px;
   color: white;
-  opacity: 0.6;
-  border-right: 2px solid #666;
-  border-bottom: 2px solid #666; }
+  border-right: 2px solid #333;
+  border-bottom: 2px solid #333; }
   @media screen and (max-width: 667px) {
     .sudoku-footer-button {
       width: 110px;
@@ -121,8 +128,21 @@
       line-height: 52px;
       font-size: 36.4px; } }
 
-.sudoku-footer-button[data-selected="true"] {
-  opacity: 1.0; }
+.sudoku-footer-button[data-color="0 false"] {
+  background-color: rgba(0, 0, 140, 0.6); }
+
+.sudoku-footer-button[data-color="0 true"] {
+  background-color: #00008c;
+  border-right: 2px solid #00008c;
+  border-bottom: 2px solid #00008c; }
+
+.sudoku-footer-button[data-color="1 false"] {
+  background-color: rgba(0, 100, 0, 0.6); }
+
+.sudoku-footer-button[data-color="1 true"] {
+  background-color: darkgreen;
+  border-right: 2px solid darkgreen;
+  border-bottom: 2px solid darkgreen; }
 
 .select-problem {
   width: 600px;
@@ -144,9 +164,9 @@
 .select-problem-button {
   text-align: center;
   height: 66px;
-  background-color: darkblue;
+  background-color: #5D5DB6;
   color: white;
-  opacity: 0.6;
+  border: 2px solid #222;
   font-size: 46.2px; }
   @media screen and (max-width: 667px) {
     .select-problem-button {
