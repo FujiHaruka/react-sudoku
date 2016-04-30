@@ -4,6 +4,7 @@ import sudokuStore from '../stores/sudoku_store'
 import annotationStore from '../stores/sudoku_annotation_store'
 import inputModeStore from '../stores/sudoku_input_mode_store'
 import sudokuSelectStore from '../stores/sudoku_select_store'
+import sudokuFinishStore from '../stores/sudoku_finish_store'
 import SUDOKU_UTIL from '../util/sudoku_util'
 import {INPUT_MODE} from '../util/consts'
 
@@ -55,6 +56,7 @@ const SudokuCell = React.createClass({
   },
 
   onClick () {
+    if (sudokuFinishStore.isFinished()) return
     let mode = inputModeStore.getMode()
     switch (mode) {
       case INPUT_MODE.ANSWER:
@@ -129,7 +131,7 @@ const SudokuCell = React.createClass({
 
   _isFinished () {
     if (sudokuStore.isFinished()) {
-      window.alert('congraturations!!')
+      sudokuFinishStore.finish()
     }
   }
 })

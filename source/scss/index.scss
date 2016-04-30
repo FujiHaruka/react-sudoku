@@ -81,6 +81,7 @@ html,body{margin:0px;padding:0px;}
 }
 
 .sudoku-board {
+  position: relative;
   margin: auto;
   @include unselectable;
   width: $sudoku-board-size;
@@ -156,6 +157,22 @@ html,body{margin:0px;padding:0px;}
   width: $sudoku-annotation-size;
   height: $sudoku-annotation-size;
   line-height: $sudoku-annotation-size;
+}
+
+.sudoku-congratulation {
+  font-size: 150px;
+  transition: 2s ease 0s;
+  opacity: 0;
+  position:absolute;
+  top: $sudoku-board-size / 2 - 100px;
+  margin: 0;
+  padding: 0;
+  width: $sudoku-board-size;
+  text-align: center;
+  color: red;
+}
+.sudoku-congratulation[data-visible="visible"] {
+  opacity: 0.4;
 }
 
 .sudoku-footer {

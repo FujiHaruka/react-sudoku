@@ -20,6 +20,7 @@ html, body {
     text-align: left; }
 
 .sudoku-board {
+  position: relative;
   margin: auto;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -104,6 +105,22 @@ html, body {
   width: 19.33333px;
   height: 19.33333px;
   line-height: 19.33333px; }
+
+.sudoku-congratulation {
+  font-size: 150px;
+  -webkit-transition: 2s ease 0s;
+  transition: 2s ease 0s;
+  opacity: 0;
+  position: absolute;
+  top: 200px;
+  margin: 0;
+  padding: 0;
+  width: 600px;
+  text-align: center;
+  color: red; }
+
+.sudoku-congratulation[data-visible="visible"] {
+  opacity: 0.4; }
 
 .sudoku-footer {
   margin: auto;
