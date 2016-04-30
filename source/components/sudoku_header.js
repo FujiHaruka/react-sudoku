@@ -26,7 +26,7 @@ const SudokuHeader = React.createClass({
   _writeNotice () {
     if (!this.isDateToday()) {
       return (
-        <a href='javascript:void(0)' onClick={this.onNewGame}>今日の問題へ</a>
+        <a href='javascript:void(0)' onClick={this.onNewGame}>今日の問題</a>
       )
     } else {
       return '　'
