@@ -9,11 +9,12 @@ const SudokuFooterButtonContainer = React.createClass({
     children: React.PropTypes.object
   },
 
-  getMode (mode) {
+  getMode () {
     if (this.props.reverseColor) {
-      mode = (inputModeStore.getMode() === INPUT_MODE.ANSWER) ? INPUT_MODE.ANNOTATION : INPUT_MODE.ANSWER
+      return (inputModeStore.getMode() === INPUT_MODE.ANSWER) ? INPUT_MODE.ANNOTATION : INPUT_MODE.ANSWER
+    } else {
+      return inputModeStore.getMode()
     }
-    return mode
   },
 
   render () {
@@ -29,13 +30,12 @@ const SudokuFooterButtonContainer = React.createClass({
   },
 
   componentWillMount () {
-    this.setState({mode: INPUT_MODE.ANSWER})
+    this.setState({mode: this.getMode()})
     inputModeStore.subscribe(this.handleToggle)
   },
 
   handleToggle () {
-    let mode = inputModeStore.getMode()
-    this.setState({mode: this.getMode(mode)})
+    this.setState({mode: this.getMode()})
   }
 })
 
