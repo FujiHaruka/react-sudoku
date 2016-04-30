@@ -27,6 +27,20 @@ const LocalStorage = {
   },
   clearDifficulty () {
     localStorage.removeItem('difficulty')
+  },
+
+  // date yyyy/mm/dd
+  getDay () {
+    let day = localStorage.getItem('day')
+    if (day) {
+      return day
+    }
+  },
+  putDay (day) {
+    localStorage.setItem('day', day)
+  },
+  clearDay () {
+    localStorage.removeItem('day')
   }
 }
 
