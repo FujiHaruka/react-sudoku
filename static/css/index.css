@@ -1,12 +1,26 @@
+html, body {
+  margin: 0px;
+  padding: 0px; }
+
 .header {
-  width: 600px; }
+  background-color: rgba(0, 0, 139, 0.7);
+  color: white;
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 20px; }
+  .header .header-container {
+    margin: auto;
+    width: 600px; }
   .header #header-title {
-    color: #666;
-    text-align: center; }
+    font-size: 2.5em;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 0px; }
   .header #header-message {
-    color: #888; }
+    text-align: left; }
 
 .sudoku-board {
+  margin: auto;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -25,9 +39,11 @@
   border-bottom: 2px solid #666; }
 
 .sudoku-header-message {
+  margin: auto;
   width: 600px;
-  text-align: right;
-  font-size: 15px; }
+  color: #666;
+  font-size: 15px;
+  text-align: left; }
 
 .sudoku-section {
   width: 200px;
@@ -90,6 +106,7 @@
   line-height: 19.33333px; }
 
 .sudoku-footer {
+  margin: auto;
   width: 600px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -146,6 +163,7 @@
 
 .select-problem {
   width: 600px;
+  background-color: #EEE;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -153,20 +171,26 @@
   -webkit-flex-flow: row wrap;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
-  margin: 20px; }
+  margin: auto;
+  margin-top: 30px; }
 
 .select-problem #select-problem-title {
   width: 600px;
   text-align: center;
   font-size: 32.34px;
-  color: #666; }
+  color: #555; }
 
 .select-problem-button {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
   text-align: center;
   height: 66px;
   background-color: #5D5DB6;
   color: white;
-  border: 2px solid #222;
+  border: 2px solid #444;
   font-size: 46.2px; }
   @media screen and (max-width: 667px) {
     .select-problem-button {
@@ -177,8 +201,8 @@
       width: 480px; } }
   @media screen and (min-width: 667px) {
     .select-problem-button {
-      margin-left: 180px;
-      margin-right: 180px;
+      margin-left: 35px;
+      margin-right: 0;
       margin-top: 10px;
       margin-bottom: 10px;
       width: 240px; } }

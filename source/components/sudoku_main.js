@@ -5,7 +5,7 @@ import SudokuFooter from './sudoku_footer'
 const SudokuMain = React.createClass({
   render () {
     return (
-      <div>
+      <div className='sudoku-main'>
         <SudokuBoard />
         <SudokuFooter />
       </div>
