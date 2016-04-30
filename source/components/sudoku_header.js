@@ -29,7 +29,7 @@ const SudokuHeader = React.createClass({
         <a href='javascript:void(0)' onClick={this.onNewGame}>今日の問題へ</a>
       )
     } else {
-      return null
+      return '　'
     }
   },
   onNewGame () {
