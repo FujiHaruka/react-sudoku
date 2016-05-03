@@ -3,3 +3,5 @@ tmp
 dist
 static/css
 temp.js
+npm-debug.log
+static/*.html

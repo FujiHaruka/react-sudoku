@@ -1,0 +1,9 @@
+extends ./components/layout
+block append meta
+block main
+  div.content
+    include ./includes/rule.jade
+block prepend menu
+  div.to-sudoku
+    h2
+      a(href='./') ナンプレで遊ぶ

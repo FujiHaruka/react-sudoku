@@ -7,11 +7,12 @@
     "start": "node server.js",
     "test": "cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register",
     "test:watch": "npm test -- --watch",
-    "build-css": "node-sass --include-path scss source/scss/index.scss tmp/index.css && postcss --use autoprefixer -o static/css/index.css tmp/index.css",
-    "watch-css": "nodemon -e .scss -x \"npm run build-css\""
+    "build-css": "node-sass source/scss -o tmp && postcss --use autoprefixer -d static/css tmp/*.css",
+    "watch-css": "nodemon -e .scss -x \"npm run build-css\"",
+    "build-html": "./jade.sh",
+    "watch-html": "nodemon -e .jade -x \"npm run build-html\""
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Fuji Haruka",
   "dependencies": {
     "react": "^15.0.1",
     "react-dom": "^15.0.1",

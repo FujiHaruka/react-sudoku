@@ -1,0 +1,29 @@
+doctype html
+head
+  meta(charset='utf-8')
+  title= title
+  block meta
+    meta(name='viewport', content='width=640px,user-scalable=0')
+    meta(name='description', content=description)
+    link(href='./css/layout.css', rel='stylesheet')
+
+body
+  block header
+    div.header
+      div.header-container
+        div#header-message スマホで遊べる無料のナンプレ（数独）
+        h1#header-title 毎日更新、ナンプレ
+
+  block main
+
+  block menu
+    div.menu-container
+      div.menu
+        h2 ナンプレの読み物コンテンツ
+        a(href='./rule.html') ナンプレのルール
+
+  block footer
+    div.footer-container
+      div.footer (c) 2016 H.Fuji
+
+block script

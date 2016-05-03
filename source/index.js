@@ -1,7 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Header from './components/header'
-import Footer from './components/footer'
 import SudokuHeader from './components/sudoku_header'
 import SelectProblem from './components/select_problem'
 import SudokuMain from './components/sudoku_main'
@@ -49,11 +47,9 @@ function render () {
   }
   ReactDOM.render(
     <div>
-      <Header />
       <SudokuHeader />
       <SudokuMain />
       <SelectProblem />
-      <Footer />
     </div>,
     rootEl
   )
